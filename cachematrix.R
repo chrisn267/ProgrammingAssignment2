@@ -9,7 +9,7 @@
 ###  floating variables (nesting) and makes R a powerful language for           ###
 ###  statistical programming.                                                   ###
 ###                                                                             ###
-###  Note these functions assumes that the initial input matrix is invertable   ###
+###  Note these functions assume that the initial input matrix is invertable.   ###
 ###                                                                             ###
 ###  Example Use:                                                               ###
 ###    mtx <- [An Invertable Matrix]                                            ###                                            
