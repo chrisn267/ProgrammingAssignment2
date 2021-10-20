@@ -1,6 +1,6 @@
 ###################################################################################
 ###                                                                             ###    
-###  This pair of functions below enable the user to more efficiently compute   ###
+###  The pair of functions below enable the user to more efficiently compute    ###
 ###  the inverse of a matrix by either computing the value of the inverse using ###
 ###  the 'solve()' function or accessing the inverse from cached memory if it   ###
 ###  has already been computed.                                                 ###
@@ -9,7 +9,7 @@
 ###  floating variables (nesting) and makes R a powerful language for           ###
 ###  statistical programming.                                                   ###
 ###                                                                             ###
-###  Note these function assumes that the initial input matrix is invertable    ###
+###  Note these functions assumes that the initial input matrix is invertable   ###
 ###                                                                             ###
 ###  Example Use:                                                               ###
 ###    mtx <- [An Invertable Matrix]                                            ###                                            
@@ -28,7 +28,7 @@
 ##    1 (set_init):  This allows the user to reset the value of the initial matrix
 ##    2 (get_init):  This returns the value of the initial matrix
 ##    3 (set_inv):   This sets the cached inverse of the initial matrix
-##    4 (get_inv):   This returns the cached inverse of the initial matrix
+##    4 (get_inv):   This returns the cached inverse of the initial matrix.
 
 makeCacheMatrix <- function(m_init = matrix()) {    # ensure called with a matrix
 
@@ -44,23 +44,25 @@ makeCacheMatrix <- function(m_init = matrix()) {    # ensure called with a matri
          get_init = get_init,
          set_inv = set_inv,
          get_inv = get_inv)
-    }
+}
 
 
-## The 'cacheSolve' function returns the inverse of a matrix which has been 
-## 'initialised' using the makeCacheMatrix function.  The 'cacheSolve' matrix will
-## either compute the value of the matrix or retrieve from cached memory if it has 
-## already been computed
+##  The 'cacheSolve' function returns the inverse of a matrix which has been 
+##  'initialised' using the makeCacheMatrix function.  The 'cacheSolve' matrix will
+##  either compute the value of the matrix or retrieve from cached memory if it has 
+##  already been computed.
 
 cacheSolve <- function(mcm, ...) {                  # needs to be called with special matrix
                                                     #   already initialised with the MCM fn
     m_inv <- mcm$get_inv()                          # determine stored value for the inverse                     
     if(!is.null(m_inv)) {                           # if there is a non-null value stored
-        message("retrieving cached inverse ...")    # then tell the user
-        return(m_inv)                               # and exit and return that value
+        message("retrieving cached inverse ...")    #   then tell the user
+        return(m_inv)                               #   and exit and return that value
     }                                               # otherwise
     m_init <- mcm$get_init()                        # retrieve the initial value of the matrix
     m_inv <- solve(m_init, ...)                     # compute the inverse using 'source()'
-    mcm$set_inv(m_inv)                              # set value of inverse in the special matrix list
+    mcm$set_inv(m_inv)                              # set value of inverse in the MCM list
     m_inv                                           # return the inverse value to the user
 }
+
+
